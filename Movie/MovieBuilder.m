@@ -25,6 +25,7 @@
     NSArray *results = [parsedObject valueForKey:@"movies"];
     NSLog(@"Count %d", results.count);
     
+    
     for (NSDictionary *movieDic in results) {
         Movie *movie = [[Movie alloc] init];
         
@@ -33,6 +34,18 @@
                 [movie setValue:[movieDic valueForKey:key] forKey:key];
             }
         }
+        
+        NSDictionary *posters = [movieDic objectForKey:@"posters"];
+        [movie setValue:[posters valueForKey:@"thumbnail"] forKey:@"thumbnail"];
+        
+        NSDictionary *ratings = [movieDic objectForKey:@"ratings"];
+        [movie setValue:[ratings valueForKey:@"critics_rating"] forKey:@"critics_rating"];
+        
+        [movie setValue:[ratings valueForKey:@"critics_score"] forKey:@"critics_score"];
+        
+        [movie setValue:[ratings valueForKey:@"audience_rating"] forKey:@"audience_rating"];
+        
+        [movie setValue:[ratings valueForKey:@"audience_score"] forKey:@"audience_score"];
         
         [movies addObject:movie];
     }

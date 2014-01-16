@@ -11,7 +11,7 @@
 
 @implementation RTCommunicator
 -(void)searchMovies{
-    NSString *urlAsString = [NSString stringWithFormat:@"https://http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=16&page=1&country=us&apikey=vxwjzfe4gaczt2qpurr33cyj"];
+    NSString *urlAsString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=16&page=1&country=us&apikey=vxwjzfe4gaczt2qpurr33cyj"];
     NSURL *url = [[NSURL alloc] initWithString:urlAsString];
     NSLog(@"%@", urlAsString);
     

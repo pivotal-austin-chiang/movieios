@@ -36,15 +36,16 @@
     _manager.communicator.delegate = _manager;
     _manager.delegate = self;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(startFetchingMovies:)
-                                                 name:@"kCLAuthorizationStatusAuthorized"
-                                               object:nil];
+    [self startFetchingMovies];
 }
 
 - (void)didReceiveMovies:(NSArray *)movies
 {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
     _movies = movies;
+    
     [self.tableView reloadData];
 }
 
@@ -53,7 +54,7 @@
     NSLog(@"Error %@; %@", error, [error localizedDescription]);
 }
 
-- (void)startFetchingMovies:(NSNotification *)notification
+- (void)startFetchingMovies
 {
     [_manager fetchMovies];
 }
@@ -100,8 +101,14 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     Movie *movie = _movies[indexPath.row];
+    NSString *url_Img = movie.thumbnail;
+    NSURL *url = [NSURL URLWithString:url_Img];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *image = [UIImage imageWithData:data];
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     [cell.textLabel setText:movie.title];
-    [cell.detailTextLabel setText:movie.critics_consensus];
+    [cell.detailTextLabel setText:[NSString stringWithFormat:@"Rated: %@ , Critics: %@%%, Audience: %@%%", movie.mpaa_rating, movie.critics_score, movie.audience_score]];
+    [cell.imageView setImage:image];
     
     return cell;
 }
