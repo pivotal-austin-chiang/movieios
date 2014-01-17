@@ -11,6 +11,6 @@
 @interface RTCommunicator : NSObject
 @property (weak, nonatomic) id<RTCommunicatorDelegate> delegate;
 
--(void)searchMovies;
+-(void)searchMovies:(int)page;
 
 @end

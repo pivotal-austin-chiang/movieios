@@ -23,7 +23,6 @@
     NSMutableArray *movies = [[NSMutableArray alloc] init];
     
     NSArray *results = [parsedObject valueForKey:@"movies"];
-    NSLog(@"Count %d", results.count);
     
     
     for (NSDictionary *movieDic in results) {

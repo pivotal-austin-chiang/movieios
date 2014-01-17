@@ -56,7 +56,7 @@
 
 - (void)startFetchingMovies
 {
-    [_manager fetchMovies];
+    [_manager fetchMovies:2];
 }
 
 - (void)didReceiveMemoryWarning
@@ -149,7 +149,13 @@
         [[segue destinationViewController] setDetailItem:object];
     }
 }
-
+//-(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
+//        //end of loading
+//        //for example [activityIndicator stopAnimating];
+//    }
+//}
 #pragma mark - Fetched results controller
 
 - (NSFetchedResultsController *)fetchedResultsController

@@ -10,8 +10,8 @@
 #import "MovieBuilder.h"
 #import "RTCommunicator.h"
 @implementation RTManager
--(void)fetchMovies{
-    [self.communicator searchMovies];
+-(void)fetchMovies:(int)page{
+    [self.communicator searchMovies:page];
 }
 
 #pragma mark - MeetupCommunicatorDelegate

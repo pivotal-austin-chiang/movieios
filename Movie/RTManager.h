@@ -16,5 +16,5 @@
 @interface RTManager : NSObject<RTCommunicatorDelegate>
 @property (strong, nonatomic) RTCommunicator *communicator;
 @property (weak, nonatomic) id<RTManagerDelegate> delegate;
--(void)fetchMovies;
+-(void)fetchMovies:(int)page;
 @end
